@@ -24,17 +24,70 @@ In timing diagram Q0 is changing as soon as the negative edge of clock pulse is 
 
 **Procedure**
 
-/* write all the steps invloved */
+1.Type the program in Quartus software.
+
+2.Compile and run the program.
+
+3.Generate the RTL schematic and save the logic diagram.
+
+4.Create nodes for inputs and outputs to generate the timing diagram.
+
+5.For different input combinations generate the timing diagram.
 
 **PROGRAM**
 
 /* Program for 4 Bit Ripple Counter and verify its truth table in quartus using Verilog programming.
 
- Developed by: RegisterNumber:
+ Developed by:MAGATHI
+ 
+ RegisterNumber:212223040108
+
+ ```
+
+module ripco(
+   input wire clk, 
+   output reg [3:0] count 
+);
+always @(posedge clk) begin
+   if (count == 4'b1111) 
+       count <= 4'b0000;
+   else
+       count <= count + 1;
+end
+endmodule
+module RippleCounter_tb;
+reg clk;
+wire [3:0] count;
+RippleCounter uut(
+   .clk(clk),
+   .count(count)
+);
+initial begin
+   clk = 0;
+   forever #5 clk = ~clk; 
+end
+initial begin
+   #10;
+   $display("Time | Count");
+   $display("-----------------");
+   repeat (16) begin
+       #5; 
+       $display("%4d | %b", $time, count);
+   end
+   $finish;
+end
+endmodule
+```
 */
 
 **RTL LOGIC FOR 4 Bit Ripple Counter**
 
+![image](https://github.com/user-attachments/assets/13c59ea9-8fd7-4437-9410-e94634c55872)
+
 **TIMING DIGRAMS FOR 4 Bit Ripple Counter**
 
+![image](https://github.com/user-attachments/assets/76405f4b-8259-4fdb-89e0-e4ca469017c4)
+
 **RESULTS**
+
+ Thus 4-bit-ripple-counter has been executed successfully. RTL LOGIC FOR 4 Bit Ripple Counter,TIMING DIGRAMS FOR 4 Bit Ripple Counter
